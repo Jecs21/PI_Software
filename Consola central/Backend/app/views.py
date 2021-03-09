@@ -83,6 +83,16 @@ class UnidadesList(generics.ListAPIView):
         new_unidade.save()
         serializer = UnidadesSerializer(new_unidade)  
         return Response(serializer.data)
+    
+    def get (self, request, *args, **kwargs):
+        return UnidadeSensorial.objects.filter(Unidade_consola_id=self.kwargs['pk'])[0]
+
+class UnidadesDetail(generics.RetrieveAPIView):
+    serializer_class = UnidadesSerializer
+
+    def get (self, request, *args, **kwargs):
+        queryset = UnidadeSensorial.objects.filter(Unidade_consola_id=self.kwargs['pk'])
+        return queryset
 
 class DadosList(generics.ListAPIView):
     queryset = Dados_unidades.objects.all()
