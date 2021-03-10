@@ -13,9 +13,6 @@ class UnidadeSensorial(models.Model):
     Unidade_consola = models.ForeignKey(ConsolaCentral,on_delete=models.CASCADE)
     Unidade_sensor = models.CharField(max_length=100)
 
-    def __int__(self):
-        return self.Unidade_id
-
 class Dados_unidades(models.Model):
     data_time = models.DateTimeField(default=timezone.now)
     data_value = models.IntegerField(default=0)

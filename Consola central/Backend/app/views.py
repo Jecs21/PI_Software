@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
+from django.db.models.query_utils import Q
 from django.http.response import HttpResponse
 from rest_framework import generics, permissions, renderers
 from rest_framework.decorators import api_view, permission_classes, renderer_classes
 from rest_framework.response import Response
-from rest_framework.reverse import reverse
+from rest_framework.reverse import preserve_builtin_query_params, reverse
 from rest_framework.serializers import Serializer
 from rest_framework.views import APIView
 from rest_framework import status
@@ -74,7 +75,7 @@ class ConsolaList(generics.ListAPIView):
 
 
 class UnidadesList(generics.ListAPIView):
-    queryset = UnidadeSensorial.objects.all()
+    #queryset = UnidadeSensorial.objects.all()
     serializer_class = UnidadesSerializer
 
     def post(self, request, *args, **kwargs):
@@ -84,8 +85,27 @@ class UnidadesList(generics.ListAPIView):
         serializer = UnidadesSerializer(new_unidade)  
         return Response(serializer.data)
     
-    def get (self, request, *args, **kwargs):
-        return UnidadeSensorial.objects.filter(Unidade_consola_id=self.kwargs['pk'])[0]
+
+    def get_queryset(self, *args, **kwargs):
+        
+        queryset_list = UnidadeSensorial.objects.all()
+        query = self.request.GET.get("id")
+        if query:
+                queryset_list = queryset_list.filter(Q(Unidade_consola = query))
+        return queryset_list
+
+            #Unidade_consola = self.request.query_params.get('Unidade_consola',None)
+            #if Unidade_coSnsola != None:
+                #queryset = UnidadeSensorial.objects.all().distinct('Unidade_consola')
+                #serializer = UnidadesSerializer(queryset)
+            
+            #serializer = UnidadeSensorial.objects.filter(Consola_id)
+            #unidades = UnidadeSensorial.objects.all()
+            #unidades = self.get_queryset()
+            #serializer = UnidadesSerializer(unidades, many =True)
+       
+            #return Response(serializer.data)
+ 
 
 class UnidadesDetail(generics.RetrieveAPIView):
     serializer_class = UnidadesSerializer
