@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 class ConsolaCentral(models.Model):
     Consola_id = models.AutoField(auto_created=True,primary_key=True)
     Consola_client = models.ForeignKey(User,on_delete=models.CASCADE)
+    #models.OneToOneFiel()
        
 class UnidadeSensorial(models.Model):
     Unidade_id = models.AutoField(auto_created=True,primary_key=True)

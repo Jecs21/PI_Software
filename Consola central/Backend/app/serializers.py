@@ -24,7 +24,7 @@ class UnidadesSerializer(serializers.ModelSerializer):
         model = UnidadeSensorial
         #exclude = []
         fields = ['Unidade_id','Unidade_sensor','Unidade_consola']
-        depth =1 #-> Unidade_Consola associada ao id da consola
+        #depth =1 #-> Unidade_Consola associada ao id da consola
 
 class DadosSerializer(serializers.ModelSerializer):
     class Meta: 

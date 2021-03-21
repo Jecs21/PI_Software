@@ -13,8 +13,9 @@ urlpatterns = [
     path('users/<int:pk>/', views.UserDetail.as_view()),
     path('consolas/', views.ConsolaList.as_view(), name='Consola-List'),
     path('Unidades/', views.UnidadesList.as_view(), name='Unidades-List'),
-    #path('Unidades/<int:pk>/', views.UnidadesDetail.as_view()),
+    path('Unidades/<int:pk>/', views.UnidadesDetail.as_view()),
     path('Dados/', views.DadosList.as_view(), name='Dados-List'),
+    path('Dados/<int:pk>', views.DadosDetail.as_view())
 ]
 
 # optional

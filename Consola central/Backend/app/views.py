@@ -75,8 +75,12 @@ class ConsolaList(generics.ListAPIView):
 
 
 class UnidadesList(generics.ListAPIView):
-    #queryset = UnidadeSensorial.objects.all()
+    queryset = UnidadeSensorial.objects.all()
     serializer_class = UnidadesSerializer
+    print("Return:", queryset)
+    print()
+    print("SQL Query",queryset.query)
+
 
     def post(self, request, *args, **kwargs):
         unidade_data = request.data
@@ -86,13 +90,15 @@ class UnidadesList(generics.ListAPIView):
         return Response(serializer.data)
     
 
-    def get_queryset(self, *args, **kwargs):
-        
-        queryset_list = UnidadeSensorial.objects.all()
-        query = self.request.GET.get("id")
-        if query:
-                queryset_list = queryset_list.filter(Q(Unidade_consola = query))
-        return queryset_list
+#def get_queryset(self,*args, **kwargs):
+        #Consola_id = request.query_params["Consola_id"]
+        #print(Consola_id)
+        #queryset = UnidadeSensorial.objects.filter(Unidade_consola_id=self.kwargs['id'])
+        #query = self.request.GET.get("id")
+        #if query:
+        #        queryset_list = queryset_list.filter(Q(Unidade_consola_id = query))
+       
+
 
             #Unidade_consola = self.request.query_params.get('Unidade_consola',None)
             #if Unidade_coSnsola != None:
@@ -104,16 +110,35 @@ class UnidadesList(generics.ListAPIView):
             #unidades = self.get_queryset()
             #serializer = UnidadesSerializer(unidades, many =True)
        
-            #return Response(serializer.data)
- 
+        #return queryset
 
-class UnidadesDetail(generics.RetrieveAPIView):
+class UnidadesDetail(generics.ListAPIView):
     serializer_class = UnidadesSerializer
 
-    def get (self, request, *args, **kwargs):
+    def get_queryset(self, *args, **kwargs):
         queryset = UnidadeSensorial.objects.filter(Unidade_consola_id=self.kwargs['pk'])
         return queryset
 
 class DadosList(generics.ListAPIView):
     queryset = Dados_unidades.objects.all()
     serializer_class = DadosSerializer
+
+    print("SQL Query",queryset.query)
+
+    def post(self, request, *args, **kwargs):            
+        dados_data = request.data                
+        new_unidade = Dados_unidades.objects.create(data_time = dados_data["data_time"], data_value = dados_data["data_value"], data_Unidade = UnidadeSensorial.objects.get(Unidade_id = dados_data["data_Unidade"]))             
+        new_unidade.save()             
+        serializer = DadosSerializer(new_unidade)      
+
+        return Response(serializer.data)    
+
+
+
+class DadosDetail(generics.ListAPIView):
+    serializer_class = DadosSerializer
+
+    def get_queryset(self, *args, **kwargs):
+        queryset = Dados_unidades.objects.filter(data_Unidade_id=self.kwargs['pk'])
+        return queryset
+    
