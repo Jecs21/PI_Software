@@ -1,0 +1,44 @@
+<RCC>
+  <qresource prefix="Avatar">
+    <file>Design/icones/avatar.png</file>
+  </qresource>
+  <qresource prefix="remover">
+    <file>Design/icones/gRAFICO_1_1_400x300.png</file>
+  </qresource>
+  <qresource prefix="Graphic">
+    <file>Design/icones/statistics_50x50.png</file>
+    <file>Design/icones/graph_50x50.png</file>
+    <file>Design/icones/icons8-combo-chart-50.png</file>
+  </qresource>
+  <qresource prefix="Table">
+    <file>Design/icones/table_50x50.png</file>
+    <file>Design/icones/icons8-table-40.png</file>
+    <file>Design/icones/icons8-table-64.png</file>
+  </qresource>
+  <qresource prefix="Menu">
+    <file>Design/icones/pngfind.com-man-head-silhouette-png-6227673_50x50.png</file>
+    <file>Design/icones/settings_50x50.png</file>
+    <file>Design/icones/plus_50x50.png</file>
+    <file>Design/icones/menu_40x30.png</file>
+    <file>Design/icones/home-icon-silhouette_1_50x50.png</file>
+  </qresource>
+  <qresource prefix="LeftArrow">
+    <file>Design/icones/left-arrow_40x30.png</file>
+    <file>Design/icones/left-arrow_1_50x40.png</file>
+    <file>Design/icones/left-arrow_60x40.png</file>
+  </qresource>
+  <qresource prefix="Username">
+    <file>Design/icones/user_21x21.png</file>
+  </qresource>
+  <qresource prefix="email">
+    <file>Design/icones/envelope_21x21.png</file>
+  </qresource>
+  <qresource prefix="Bosh">
+    <file>Design/icones/UA1_150x40.png</file>
+    <file>Design/icones/bosch-logo_2_150x40.png</file>
+  </qresource>
+  <qresource prefix="PadLock">
+    <file>Design/icones/book_50x50.png</file>
+    <file>Design/icones/padlock_21x21.png</file>
+  </qresource>
+</RCC>
